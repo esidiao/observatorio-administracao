@@ -8,8 +8,8 @@
     "obra": "Observatório Nacional da Formação em Administração",
     "descricao": "Sítio estático data-driven com indicadores de acesso territorial, qualidade e absorção profissional dos cursos de Administração no Brasil: formulação e cálculo dos índices ICT, E, IAF e IAP e da densidade de administradores por mil ocupados, catálogo de indicadores, textos e desenho editorial."
   },
-  "registrado_em": "2026-09-10T03:11:09+00:00",
-  "git_commit_ancora": null,
+  "registrado_em": "2026-09-10T03:12:43+00:00",
+  "git_commit_ancora": "af054c4f8d2fc8707fe952d94cb1e62300c78e93",
   "algoritmo": "SHA-256 sobre o conteúdo com fim de linha normalizado em LF",
   "fundamento": "Lei 9.610/1998 (direitos autorais) e Lei 9.609/1998 (programa de computador). O resumo combinado é impressão digital única do conjunto; o commit Git ancora a data no histórico versionado.",
   "como_verificar": [
