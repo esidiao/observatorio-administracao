@@ -1,0 +1,253 @@
+{% extends "base.html.j2" %}
+{% block titulo %}Observatório Nacional da Formação em Administração{% endblock %}
+
+{% block cabeca %}
+<link rel="stylesheet" href="{{ depth }}static/vendor/leaflet/leaflet.css">
+{% endblock %}
+
+{% block conteudo %}
+
+{#
+  Herói editorial. Os números vêm todos de `panorama`, nunca escritos à mão no
+  texto: uma manchete com número digitado sobrevive à mudança do dado e vira a
+  primeira coisa errada que o leitor encontra.
+#}
+<section class="heroi">
+  <div class="heroi-interno">
+    <p class="heroi-etiqueta">Censo da Educação Superior {{ panorama.ano_censo }} · CPC 2022 · RAIS · CEMPRE</p>
+    <h1 class="heroi-manchete">
+      A Administração se ensina presencialmente em
+      <strong>{{ panorama.municipios_oferta | numero }}</strong>
+      dos {{ panorama.municipios_total | numero }} municípios brasileiros.
+      A distância, alcança
+      <strong>{{ panorama.polos_municipios | numero }}</strong>.
+    </h1>
+    <p class="heroi-lede">
+      São {{ panorama.vagas_total | numero }} vagas anuais
+      {% if panorama.n_ufs_com_oferta == panorama.n_ufs -%}
+      em todas as {{ panorama.n_ufs }} unidades da federação
+      {%- else -%}
+      em {{ panorama.n_ufs_com_oferta }} das {{ panorama.n_ufs }} unidades da federação —
+      {{ panorama.ufs_sem_oferta | join(', ') }} não têm nenhum curso presencial
+      {%- endif -%}
+      {%- if panorama.pct_ead is not none -%}
+      , e {{ panorama.pct_ead | numero(1) }}% delas são a distância:
+      {{ panorama.vagas_ead | numero }} vagas registradas na sede da
+      mantenedora, atendidas por {{ panorama.polos_registros | numero }} polos.
+      {%- else -%}.{%- endif %}
+      A oferta presencial cobre {{ panorama.pct_municipios_oferta | numero(1) }}%
+      do território municipal; os polos, {{ panorama.pct_municipios_polo | numero(1) }}%.
+    </p>
+    <p class="heroi-nota">
+      O contraste entre esses dois alcances é a manchete deste observatório — e
+      também o seu maior cuidado. <strong>A vaga EaD está registrada onde fica a
+      mantenedora, não onde está o aluno.</strong> Todo número que soma
+      presencial e EaD descreve onde a vaga foi ofertada.
+    </p>
+    <p class="heroi-nota">
+      Este observatório não estima nada. Onde não há fonte oficial para um
+      recorte, a página diz <em>sem dados</em> — e o mapa fica cinza.
+    </p>
+  </div>
+</section>
+
+<section class="secao">
+  <h2 class="secao-titulo">Panorama nacional</h2>
+  <div class="kpis">
+    <div class="kpi">
+      <span class="kpi-valor">{{ panorama.vagas_total | numero }}</span>
+      <span class="kpi-rotulo">Vagas anuais</span>
+      <span class="kpi-nota">{{ panorama.vagas_presencial | numero }} presenciais ·
+        {{ panorama.vagas_ead | numero }} EaD</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-valor">{{ panorama.matriculas | numero }}</span>
+      <span class="kpi-rotulo">Matrículas</span>
+      <span class="kpi-nota">{{ panorama.concluintes | numero }} concluintes no ano</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-valor">{{ panorama.municipios_oferta | numero }}</span>
+      <span class="kpi-rotulo">Municípios com curso presencial</span>
+      <span class="kpi-nota">{{ panorama.municipios_deserto | numero }} sem nenhum —
+        {{ panorama.pct_municipios_oferta | numero(1) }}% do país tem curso</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-valor">{{ panorama.polos_municipios | numero }}</span>
+      <span class="kpi-rotulo">Municípios com polo EaD</span>
+      <span class="kpi-nota">{{ panorama.polos_registros | numero }} polos ·
+        {{ panorama.municipios_so_ead | numero }} municípios só têm EaD</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-valor">{{ panorama.cursos_avaliados | numero }}</span>
+      <span class="kpi-rotulo">Cursos avaliados no CPC 2022</span>
+      <span class="kpi-nota">Administração está no ciclo 2022, não no de 2023</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-valor">
+        {%- if panorama.municipios_com_administrador -%}
+          {{ panorama.municipios_com_administrador | numero }}
+        {%- else -%}<span class="sem-dados">sem dados</span>{%- endif -%}
+      </span>
+      <span class="kpi-rotulo">Municípios com administrador formalmente empregado</span>
+      <span class="kpi-nota">RAIS — vínculos ativos em 31/12
+        {%- if panorama.pct_municipios_com_administrador %},
+        {{ panorama.pct_municipios_com_administrador | numero(1) }}% do país{% endif %}</span>
+    </div>
+  </div>
+</section>
+
+<section class="secao">
+  <div class="secao-cabecalho">
+    <h2 class="secao-titulo">Mapa nacional</h2>
+    <label class="campo">
+      Indicador
+      <select id="seletor-mapa">
+        {% for cat in categorias %}
+        <optgroup label="{{ cat }}">
+          {% for ind in catalogo if ind.cat == cat %}
+          <option value="{{ ind.key }}"{% if ind.key == 'ICT' %} selected{% endif %}>{{ ind.nome }}</option>
+          {% endfor %}
+        </optgroup>
+        {% endfor %}
+      </select>
+    </label>
+  </div>
+  <p id="mapa-explicacao" class="secao-lede"></p>
+  <div id="mapa" class="mapa"></div>
+  <div id="legenda" class="legenda"></div>
+  <p class="nota">
+    Malhas territoriais do IBGE, servidas localmente — o mapa não carrega
+    imagem de terceiros e funciona offline depois da primeira visita. Clique
+    num estado para abrir a página dele.
+  </p>
+</section>
+
+<section class="secao">
+  <div class="secao-cabecalho">
+    <h2 class="secao-titulo">Estados</h2>
+    <button class="botao" data-exportar="#tabela-ufs" data-nome="ufs-administracao.csv">
+      Baixar CSV
+    </button>
+    <button class="botao botao-fantasma" data-exportar-xlsx="#tabela-ufs"
+            data-nome="ufs-administracao.xlsx" data-aba="Estados">Baixar XLSX</button>
+  </div>
+  <div class="tabela-rolagem">
+    <table id="tabela-ufs" data-ordenavel>
+      <caption class="so-leitor">Indicadores de Administração por unidade da federação</caption>
+      <thead>
+        <tr>
+          <th scope="col">UF</th>
+          <th scope="col">Vagas totais</th>
+          <th scope="col">% EaD</th>
+          <th scope="col">Municípios com curso</th>
+          <th scope="col">ICT</th>
+          <th scope="col">IAF</th>
+          <th scope="col">CPC</th>
+          <th scope="col">IAP</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sigla, d in ufs_ordenadas %}
+        <tr{% if not d.tem_oferta_presencial %} class="linha-sem-oferta"{% endif %}>
+          <td data-valor="{{ sigla }}">
+            <a href="{{ depth }}uf/{{ sigla }}.html">{{ nomes_uf[sigla] }}</a>
+            {% if not d.tem_oferta_presencial %}
+            <span class="marca-sem-oferta" title="Sem curso presencial de Administração">sem oferta presencial</span>
+            {% endif %}
+          </td>
+          {% for campo in ['vagas_total', 'pct_ead', 'municipios_oferta', 'ICT', 'IAF', 'CPC', 'IAP'] %}
+          <td class="num" data-valor="{{ d[campo] if d[campo] is not none else '' }}"
+              data-campo="{{ campo }}">{{ '' }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="tabela-dica">Role a tabela para o lado para ver as demais colunas.</p>
+  <p class="nota">
+    As 27 unidades da federação têm curso presencial de Administração — este é
+    um dos poucos cursos em que isso acontece. A tabela mostra todas, inclusive
+    as que a coluna de qualidade ou de absorção deixa em branco: um campo vazio
+    é informação sobre a fonte, não sobre o estado.
+  </p>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ depth }}static/vendor/leaflet/leaflet.js"></script>
+<script>
+const UFS = {{ ufs_json }};
+const DEPTH = {{ depth | tojson }};
+const NOMES_UF = {{ nomes_uf | json }};
+
+/* Preenche as células a partir do catálogo, em vez de formatar no Jinja.
+   Formatar no template exigiria repetir as casas decimais de cada indicador
+   no HTML — que é exatamente a duplicação que o catálogo existe para evitar. */
+document.querySelectorAll('td[data-campo]').forEach(function (td) {
+  const campo = td.dataset.campo;
+  const bruto = td.dataset.valor;
+  const valor = bruto === '' ? null : parseFloat(bruto);
+  td.textContent = fmt(valor, campo);
+  if (valor === null) td.classList.add('sem-dados');
+});
+
+const mapaEl = document.getElementById('mapa');
+const seletor = document.getElementById('seletor-mapa');
+const legendaEl = document.getElementById('legenda');
+const explicacaoEl = document.getElementById('mapa-explicacao');
+let mapa = null;
+let camada = null;
+let malha = null;
+
+function siglaDaFeicao(f) {
+  const p = f.properties || {};
+  return (p.sigla || p.SIGLA || p.sigla_uf || p.SIGLA_UF || '').toUpperCase();
+}
+
+function redesenhar() {
+  const chave = seletor.value;
+  const valores = Object.keys(UFS).map(s => UFS[s][chave]);
+  const meta = INDICADOR_META[chave] || {};
+  const usaEscalaDinamica = meta.min === null || meta.min === undefined;
+  const corDinamica = usaEscalaDinamica ? escalaDinamica(valores) : null;
+
+  const item = GLOSSARIO.filter(g => g.key === chave)[0];
+  explicacaoEl.textContent = item ? item.oque : '';
+
+  if (camada) { camada.remove(); camada = null; }
+  camada = desenharMalha(mapa, malha, {
+    chave: chave,
+    valorDe: f => {
+      const uf = UFS[siglaDaFeicao(f)];
+      return uf ? uf[chave] : null;
+    },
+    rotuloDe: f => {
+      const p = f.properties || {};
+      const sigla = siglaDaFeicao(f);
+      return NOMES_UF[sigla] || sigla;
+    },
+    corDe: corDinamica ? corDinamica : undefined,
+    aoClicar: f => {
+      const sigla = siglaDaFeicao(f);
+      if (sigla) window.location.href = DEPTH + 'uf/' + sigla + '.html';
+    },
+  });
+  montarLegenda(legendaEl, chave, valores);
+}
+
+fetch(DEPTH + 'static/geo/brasil.json')
+  .then(r => r.json())
+  .then(function (geo) {
+    malha = geo;
+    mapa = criarMapa(mapaEl);
+    redesenhar();
+    seletor.addEventListener('change', redesenhar);
+  })
+  .catch(function () {
+    mapaEl.innerHTML = '<p class="vazio">Não foi possível carregar a malha ' +
+      'territorial. Os dados continuam disponíveis na tabela abaixo.</p>';
+  });
+</script>
+{% endblock %}

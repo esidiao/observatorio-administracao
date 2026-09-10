@@ -1,0 +1,88 @@
+{% extends "base.html.j2" %}
+{% block titulo %}Glossário dos indicadores — Observatório Nacional da Formação em Administração{% endblock %}
+{% block descricao %}O que cada indicador mede, em que escala, em que direção e de que fonte vem.{% endblock %}
+
+{% block conteudo %}
+
+<section class="cabecalho-uf">
+  <h1>Glossário dos indicadores</h1>
+  <p class="secao-lede">
+    Cada verbete diz o que o indicador mede, em que escala, se um valor alto é
+    bom ou ruim, e de onde o número vem. Não há indicador neste site fora desta
+    lista: o glossário e a formatação das páginas saem da mesma estrutura, e o
+    build falha se alguma delas ficar para trás.
+  </p>
+</section>
+
+<section class="secao">
+  <div class="secao-cabecalho">
+    <label class="campo campo-busca">
+      Buscar
+      <input type="search" id="busca-glossario" placeholder="ICT, absorção, EaD, doutores…"
+             autocomplete="off">
+    </label>
+    <span id="glossario-contador" class="contador"></span>
+  </div>
+  <div id="glossario"></div>
+</section>
+
+<section class="secao">
+  <h2 class="secao-titulo">Como ler as ausências</h2>
+  <p>
+    Onde não existe fonte oficial para um recorte, a página escreve
+    <span class="sem-dados">sem dados</span> e o mapa fica cinza. Isso nunca é
+    substituído por zero, por média nacional ou pelo valor de um estado vizinho.
+    Um valor ausente e um valor zero dizem coisas diferentes, e apagar essa
+    diferença é a maneira mais silenciosa de um observatório mentir.
+  </p>
+  <h3>Ausências conhecidas deste ciclo</h3>
+  <p>
+    Aqui a tentação é diferente da de um curso pequeno. Os números de
+    Administração são enormes e quase completos — as 27 unidades da federação
+    têm oferta presencial, {{ panorama.cursos_avaliados | numero }} cursos foram
+    avaliados, e o IDD cobre todos eles. Justamente por isso o risco deixa de
+    ser preencher lacuna e passa a ser <strong>tratar como sólido o que é apenas
+    volumoso</strong>. O que segue é o que este ciclo não sabe.
+  </p>
+  <ul class="lista">
+    <li>
+      <strong>Dois terços da capacidade estão registrados fora do lugar onde se
+      estuda.</strong> {{ panorama.pct_ead | numero(1) }}% das vagas são a
+      distância, e a linha do Censo que carrega essas vagas é a da SEDE DA
+      MANTENEDORA — não a do polo. Não é lacuna: é o significado do número. Todo
+      total que soma presencial e EaD diz onde a vaga foi ofertada.
+    </li>
+    <li>
+      <strong>Administração pública está fora do recorte.</strong> É rótulo CINE
+      separado, com 3.530 registros no Censo, e área de avaliação separada no
+      CPC 2022, com 65 cursos. Não entra por decisão de escopo declarada. Uma
+      busca por substring somaria os dois e mais dois rótulos vizinhos — 4.905
+      registros a mais, 25% de acréscimo silencioso.
+    </li>
+    <li>
+      <strong>O ciclo do CPC é 2022, não 2023.</strong> O ciclo de 2023 avaliou
+      saúde e engenharias. Comparar estes conceitos com os de um curso avaliado
+      em 2023 é comparar edições diferentes do mesmo instrumento.
+    </li>
+    <li>
+      <strong>CPC contínuo ausente em 81 cursos.</strong> Dos
+      {{ panorama.cursos_avaliados | numero }} avaliados. Ficam sem conceito —
+      não com conceito zero, que seria dizer que foram medidos e foram mal.
+    </li>
+    <li>
+      <strong>A RAIS conta vínculos, não pessoas.</strong> Quem tem dois
+      empregos formais como administrador conta duas vezes. Os microdados
+      públicos não permitem desduplicar por pessoa, e estimar a desduplicação
+      seria inventar exatamente o número que falta. Trabalho informal e
+      sociedade própria não aparecem em fonte nenhuma deste site.
+    </li>
+    <li>
+      <strong>Um município do país não está no CEMPRE.</strong> A pesquisa traz
+      5.570 municípios; o IBGE reconhece 5.571 desde a instalação de Boa
+      Esperança do Norte (MT), em 1º de janeiro de 2025. O município ausente
+      fica sem dado, não com zero.
+    </li>
+  </ul>
+</section>
+
+{% endblock %}

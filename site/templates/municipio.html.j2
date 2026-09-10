@@ -1,0 +1,98 @@
+{% extends "base.html.j2" %}
+{% block titulo %}{{ m.nome }} ({{ sigla }}) — Observatório Nacional da Formação em Administração{% endblock %}
+{% block descricao %}Formação, oferta a distância e absorção profissional em Administração no município de {{ m.nome }}, {{ nome_uf }}.{% endblock %}
+
+{% block conteudo %}
+
+<nav class="migalhas" aria-label="Trilha">
+  <a href="{{ depth }}index.html">Panorama</a> ›
+  <a href="{{ depth }}uf/{{ sigla }}.html">{{ nome_uf }}</a> ›
+  <span>{{ m.nome }}</span>
+</nav>
+
+<section class="cabecalho-uf">
+  <h1>{{ m.nome }} <span class="sigla-uf">{{ sigla }}</span></h1>
+  <p class="linha-contexto">
+    {% if m.tem_curso_presencial %}
+      Município com oferta presencial de Administração.
+    {% elif m.polos_ead %}
+      Município sem curso presencial. A formação chega aqui por
+      {{ m.polos_ead }} polo{{ 's' if m.polos_ead > 1 else '' }} de EaD.
+    {% else %}
+      Município sem curso presencial e sem polo de EaD registrado.
+    {% endif %}
+  </p>
+</section>
+
+<section class="secao">
+  <h2 class="secao-titulo">Formação</h2>
+  <div class="kpis kpis-compacto" data-cartoes>
+    {% for campo in ['vagas_presencial', 'cursos_presencial', 'n_ies',
+                     'matriculas', 'matriculas_ead', 'concluintes', 'polos_ead'] %}
+    <div class="kpi" data-campo="{{ campo }}"
+         data-valor="{{ m[campo] if m[campo] is not none else '' }}"></div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="secao">
+  <h2 class="secao-titulo">Absorção profissional</h2>
+  <div class="kpis kpis-compacto" data-cartoes>
+    {% for campo in ['administradores_rais', 'empresas_atuantes',
+                     'pessoal_ocupado'] %}
+    <div class="kpi" data-campo="{{ campo }}"
+         data-valor="{{ m[campo] if m[campo] is not none else '' }}"></div>
+    {% endfor %}
+  </div>
+  {% if m.administradores_rais is none %}
+  <p class="nota">
+    Sem dado de vínculos formais para este município. Isso quer dizer que a
+    fonte não o alcançou — não que não haja administrador empregado aqui.
+  </p>
+  {% elif m.administradores_rais == 0 %}
+  <p class="nota">
+    Nenhum vínculo formal de administrador ativo em 31 de dezembro. Aqui o zero
+    <strong>é medida</strong>: a RAIS varre todos os estabelecimentos formais do
+    município e não encontrou nenhum. Trabalho informal e sociedade própria não
+    aparecem na RAIS, e não estão contados nem aqui nem em lugar nenhum deste
+    observatório.
+  </p>
+  {% endif %}
+  {% if m.polos_ead and not m.tem_curso_presencial %}
+  <p class="nota">
+    Este município recebe formação a distância e não tem curso presencial. As
+    <em>vagas</em> desses cursos não aparecem aqui: elas estão registradas no
+    estado-sede da mantenedora. O que aparece são as matrículas dos polos.
+  </p>
+  {% endif %}
+</section>
+
+<section class="secao">
+  <h2 class="secao-titulo">Contexto estadual</h2>
+  <p>
+    {{ nome_uf }} tem {{ d.municipios_oferta | numero }} municípios com curso
+    presencial, de {{ d.municipios_total | numero }} no total.
+  </p>
+  <p><a class="botao" href="{{ depth }}uf/{{ sigla }}.html">Ver o estado inteiro</a></p>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('[data-cartoes] .kpi').forEach(function (cartao) {
+  const campo = cartao.dataset.campo;
+  const bruto = cartao.dataset.valor;
+  const valor = bruto === '' ? null : parseFloat(bruto);
+  const valorEl = document.createElement('span');
+  valorEl.className = 'kpi-valor';
+  valorEl.textContent = fmt(valor, campo);
+  if (valor === null) valorEl.classList.add('sem-dados');
+  const rotuloEl = document.createElement('span');
+  rotuloEl.className = 'kpi-rotulo';
+  rotuloEl.textContent = nomeCompleto(campo);
+  cartao.appendChild(valorEl);
+  cartao.appendChild(rotuloEl);
+});
+</script>
+{% endblock %}

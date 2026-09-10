@@ -1,0 +1,101 @@
+{
+  "gerado_em": "2026-09-10",
+  "fontes": {
+    "censo": {
+      "presente": true,
+      "fonte": "Censo da Educação Superior (INEP)",
+      "url": "https://download.inep.gov.br/microdados/microdados_censo_da_educacao_superior_2024.zip",
+      "ano_censo": 2024,
+      "membro_cursos": "microdados_censo_da_educacao_superior_2024/dados/MICRODADOS_CADASTRO_CURSOS_2024.CSV",
+      "membro_ies": "microdados_censo_da_educacao_superior_2024/dados/MICRODADOS_ED_SUP_IES_2024.CSV",
+      "rotulo_cine": "Administração",
+      "md5_publicado": "dbe25e67857aa68b12beaeffa194f53f *MICRODADOS_CADASTRO_IES_2024.csv\r\n4ada15841c698a47ec19d6cb53ac2c13 *MICRODADOS_CADASTRO_CURSOS_2024.csv",
+      "linhas_cadastro": 720349,
+      "linhas_curso": 19205,
+      "ies_cadastradas": 2561,
+      "extraido_em": "2026-09-09"
+    },
+    "cpc": {
+      "presente": true,
+      "fonte": "Conceito Preliminar de Curso (INEP)",
+      "url": "https://download.inep.gov.br/educacao_superior/indicadores/resultados/2022/cpc_2022.xlsx",
+      "ciclo": "2022",
+      "area_avaliacao": "ADMINISTRAÇÃO",
+      "match": "igualdade sobre o rótulo normalizado, nunca substring",
+      "ponderacao": "média ponderada por concluintes participantes, 3 casas",
+      "componente_q_do_iaf": "CPC (Faixa), escala 1 a 5",
+      "cursos_avaliados": 1805,
+      "ufs_avaliadas": 27,
+      "extraido_em": "2026-09-10"
+    },
+    "rais": {
+      "presente": true,
+      "fonte": "RAIS — Relação Anual de Informações Sociais (Ministério do Trabalho e Emprego)",
+      "ano": 2024,
+      "ftp": "ftp://ftp.mtps.gov.br/pdet/microdados/RAIS/2024",
+      "recorte": "CBO 2002, família 2521 (Administradores), vínculos ativos em 31/12",
+      "codigos_cbo_encontrados": {
+        "252105": 450988
+      },
+      "arquivos": [
+        "RAIS_VINC_PUB_CENTRO_OESTE.7z",
+        "RAIS_VINC_PUB_MG_ES_RJ.7z",
+        "RAIS_VINC_PUB_NI.7z",
+        "RAIS_VINC_PUB_NORDESTE.7z",
+        "RAIS_VINC_PUB_NORTE.7z",
+        "RAIS_VINC_PUB_SP.7z",
+        "RAIS_VINC_PUB_SUL.7z"
+      ],
+      "vinculos_varridos": 87747220,
+      "administradores_ativos": 345947,
+      "municipios_com_administrador": 4081,
+      "extraido_em": "2026-09-10",
+      "ano_cempre_pareado": "2024",
+      "anos_casam": true,
+      "administradores_sem_municipio": 39,
+      "codigos_sem_municipio": [
+        "999999"
+      ]
+    },
+    "cempre": {
+      "presente": true,
+      "fonte": "Cadastro Central de Empresas — CEMPRE (IBGE)",
+      "agregado": 9509,
+      "agregado_nome": "Unidades locais, empresas e outras organizações atuantes, pessoal ocupado total, pessoal ocupado assalariado, pessoal assalariado médio, salários e outras remunerações e salário médio mensal",
+      "variaveis": {
+        "367": "Número de empresas e outras organizações atuantes",
+        "707": "Pessoal ocupado total"
+      },
+      "nivel": "N6 (município)",
+      "ano": "2024",
+      "periodicidade": {
+        "frequencia": "anual",
+        "inicio": 2022,
+        "fim": 2024
+      },
+      "municipios_na_fonte": 5570,
+      "url": "https://servicodados.ibge.gov.br/api/v3/agregados/9509/periodos/-1/variaveis/367|707?localidades=N6[all]",
+      "extraido_em": "2026-09-10"
+    },
+    "ibge_municipios": {
+      "presente": true,
+      "fonte": "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?view=nivelado",
+      "total": 5571
+    },
+    "ibge_populacao": {
+      "presente": true,
+      "agregado": 6579,
+      "variavel": 9324,
+      "nivel": "N3",
+      "ano": "2026"
+    }
+  },
+  "limitacoes_conhecidas": [
+    "Dois terços da capacidade nacional são de cursos a distância, e as vagas de EaD estão registradas na UF-SEDE DA MANTENEDORA, não onde o aluno estuda. Todo número de vagas que inclui EaD descreve onde a vaga foi OFERTADA, não onde ela é ocupada.",
+    "Administração pública é rótulo CINE separado (3.530 registros no Censo 2024) e área de avaliação separada no CPC 2022 (65 cursos). Está FORA deste recorte, por decisão de escopo declarada — não por ausência de dado.",
+    "A avaliação de Administração é do ciclo CPC 2022, não 2023: 2023 é o ciclo da saúde e das engenharias. Comparar estes conceitos com os de um curso avaliado em 2023 é comparar edições diferentes do mesmo instrumento.",
+    "81 dos 1.805 cursos avaliados não têm CPC contínuo. Ficam sem conceito, não com conceito zero.",
+    "O CEMPRE traz 5.570 municípios; o IBGE reconhece 5.571 desde a instalação de Boa Esperança do Norte (MT) em 01/01/2025. O município ausente da fonte fica sem dado, não com zero.",
+    "Os vínculos da RAIS são vínculos, não pessoas: quem tem dois empregos formais como administrador conta duas vezes. Os microdados públicos não permitem desduplicar por pessoa, e estimar a desduplicação seria inventar o número que falta."
+  ]
+}

@@ -1,0 +1,21 @@
+{
+ "uf": "DF",
+ "municipios": [
+  {
+   "codigo": "5300108",
+   "nome": "Brasília",
+   "uf": "DF",
+   "vagas_presencial": 6901,
+   "cursos_presencial": 39,
+   "n_ies": 33,
+   "matriculas": 8814,
+   "matriculas_ead": 5699,
+   "concluintes": 1179,
+   "polos_ead": 75,
+   "tem_curso_presencial": true,
+   "administradores_rais": 17618,
+   "empresas_atuantes": 203760,
+   "pessoal_ocupado": 1833502
+  }
+ ]
+}
