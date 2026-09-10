@@ -46,6 +46,18 @@ arredondadas com TRÊS casas. Com duas, nenhuma UF reproduz o valor publicado �
 um curso com 4 participantes e outro com 180 movem a terceira casa, e a
 diferença aparece exatamente onde alguém vai conferir.
 
+BRUTA OU PADRONIZADA: CADA CAMPO USA A QUE FAZ SENTIDO
+-------------------------------------------------------
+A planilha traz as duas versões de quase tudo, e elas não são intercambiáveis:
+
+  · IDD  -> NOTA PADRONIZADA (0 a 5). A nota bruta do IDD vai de −6,548 a
+            10,786 nesta área; publicá-la como se fosse conceito daria valores
+            negativos numa escala que não tem negativo.
+  · docentes (mestres, doutores, regime) -> NOTA BRUTA, que é proporção de 0 a
+            1 e vira percentual multiplicando por 100.
+  · dimensões do questionário do estudante -> NOTA BRUTA, na escala 1 a 6 do
+            próprio questionário. Medido: de 2,099 a 6,000.
+
 O COMPONENTE Q DO IAF USA CPC (FAIXA), NÃO O CONTÍNUO
 ------------------------------------------------------
 `q_qualidade` espera conceitos na escala 1 a 5, porque calcula (v−1)/4. O CPC
@@ -308,7 +320,11 @@ def agregar(df, vagas, ciclo, url, area):
             "pct_doc_mestres": _ponderada(grupo, "mestres", casas=1, fator=100),
             "pct_doc_doutores": _ponderada(grupo, "doutores", casas=1, fator=100),
             "pct_doc_regime_integral": _ponderada(grupo, "regime", casas=1, fator=100),
-            # dimensões avaliadas pelos estudantes: notas brutas 0 a 5.
+            # Dimensões avaliadas pelos estudantes: NOTA BRUTA, que é a
+            # escala do questionário do ENADE — 1 a 6, não 0 a 5. Medido
+            # no ciclo 2022, área ADMINISTRAÇÃO: mínimo 2,099, máximo
+            # 6,000 nas três dimensões. Quem tratar isso como 0 a 5
+            # normaliza errado e produz valor acima do teto declarado.
             "dim_didatico_pedagogica": _ponderada(grupo, "dim_didatica"),
             "dim_infraestrutura": _ponderada(grupo, "dim_infra"),
             "dim_oportunidade_formacao": _ponderada(grupo, "dim_oportunidade"),
