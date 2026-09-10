@@ -8,8 +8,8 @@
     "obra": "Observatório Nacional da Formação em Administração",
     "descricao": "Sítio estático data-driven com indicadores de acesso territorial, qualidade e absorção profissional dos cursos de Administração no Brasil: formulação e cálculo dos índices ICT, E, IAF e IAP e da densidade de administradores por mil ocupados, catálogo de indicadores, textos e desenho editorial."
   },
-  "registrado_em": "2026-09-10T13:02:12+00:00",
-  "git_commit_ancora": "204b819f0a9f0abf5137b1a9a2c1fb86ac139bf3",
+  "registrado_em": "2026-09-10T13:18:53+00:00",
+  "git_commit_ancora": "bdb9ce72e367b8c4f561e04735df05f565caa8aa",
   "algoritmo": "SHA-256 sobre o conteúdo com fim de linha normalizado em LF",
   "fundamento": "Lei 9.610/1998 (direitos autorais) e Lei 9.609/1998 (programa de computador). O resumo combinado é impressão digital única do conjunto; o commit Git ancora a data no histórico versionado.",
   "como_verificar": [
@@ -23,8 +23,8 @@
   "natureza": "Declaração datada de conteúdo, com anterioridade ancorada no histórico do repositório. Permite comparar uma cópia com o original arquivo a arquivo. Não é registro em cartório nem depósito no INPI, e não substitui nenhum dos dois.",
   "escopo": "Apenas material autoral: código, textos, templates e o desenho dos índices. Não inclui os dados públicos (INEP, DATASUS, IBGE), que pertencem às respectivas fontes, nem bibliotecas de terceiros.",
   "n_arquivos": 38,
-  "bytes_totais": 453573,
-  "sha256_combinado": "6aec61b740901b6d55f06902adcbf347cbd31aa1443fe769582efd455ffaf88b",
+  "bytes_totais": 454997,
+  "sha256_combinado": "cecf506446b223e9a036f5a74fef9b7c27300b2989b5cf6b52c532ca83f2981e",
   "arquivos": [
     {
       "arquivo": "README.md",
@@ -154,9 +154,9 @@
     },
     {
       "arquivo": "site/templates/base.html.j2",
-      "bytes": 4453,
-      "linhas": 106,
-      "sha256": "f6721f47bde175fbd0eb55f7065364f2b2e2e6bf6dd5dd6cf4be646b4a954383"
+      "bytes": 5117,
+      "linhas": 117,
+      "sha256": "a914cbfba8719b2f6773eca1926d93b0c27763afbd8bf06f47bca48e03c7aaa9"
     },
     {
       "arquivo": "site/templates/comparar.html.j2",
@@ -214,9 +214,9 @@
     },
     {
       "arquivo": "site/static/css/style.css",
-      "bytes": 26018,
-      "linhas": 655,
-      "sha256": "e7321eaf7f4f9bea75f08e65a2413bbd7fd83f0ff5d2791ebd6443e407a95d07"
+      "bytes": 26778,
+      "linhas": 671,
+      "sha256": "84048199112d3287569da7e6ab5695617c147ad7b0f74e453f6e0580fbafbfeb"
     },
     {
       "arquivo": "site/static/js/app.js",

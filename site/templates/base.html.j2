@@ -40,6 +40,10 @@
       <a href="{{ depth }}correlacoes.html">Correlações</a>
       <a href="{{ depth }}serie.html">Série</a>
       <a href="{{ depth }}glossario.html">Glossário</a>
+      {# Autoria no menu, não só no rodapé. Quem chega por busca cai numa página
+         de município e não tem por que rolar até o fim para descobrir de quem é
+         a obra, com que método foi feita e o que pode reusar. #}
+      <a href="{{ depth }}autor.html">Autoria</a>
     </nav>
   </div>
 </header>
@@ -87,7 +91,14 @@
     obra autoral protegida pelas Leis 9.610/1998 e 9.609/1998.
     Dados primários do INEP, do Ministério do Trabalho e do IBGE, de domínio
     público. Indicadores calculados liberados para reúso com citação.
-    <a href="{{ depth }}autor.html">Autoria e direitos</a>.
+  </p>
+  {# Chamada destacada, como no observatório de Farmácia: os termos de uso não
+     podem ficar do mesmo tamanho e do mesmo peso que o resto do rodapé, que é
+     onde ninguém olha. #}
+  <p class="rodape-direitos">
+    <a href="{{ depth }}autor.html">Autoria, método e registro de anterioridade</a>
+    <span aria-hidden="true">·</span>
+    <a href="{{ depth }}aviso-legal.html">Direitos autorais e condições de uso</a>
   </p>
 </footer>
 

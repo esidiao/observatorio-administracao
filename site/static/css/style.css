@@ -529,6 +529,22 @@ td.parcial { color: var(--warm-forte); }
   .autor-retrato img { margin: 0 auto; width: 160px; height: 160px; }
 }
 .rodape-copyright { color: #B0A6CB; }
+
+/* Chamada de direitos: destacada do resto do rodapé sem virar botão. Os alvos
+   de toque ficam com 44px de altura porque são links de rodapé, onde o dedo
+   erra mais — e o sublinhado é permanente, não só no hover: link que só se
+   revela ao passar o mouse não existe para quem navega por toque. */
+.rodape-direitos {
+  max-width: 1180px; margin: 14px auto 0; padding: 0 24px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px;
+  font-size: 0.9rem; font-weight: 500;
+}
+.rodape-direitos a {
+  color: #E2DEEC; text-decoration: underline; text-underline-offset: 3px;
+  min-height: 44px; display: inline-flex; align-items: center;
+}
+.rodape-direitos a:hover { color: var(--warm-claro); }
+.rodape-direitos span { color: #B0A6CB; }
 .rodape-copyright a { color: #D6D1E4; text-decoration: underline; }
 
 /* ============================================================
