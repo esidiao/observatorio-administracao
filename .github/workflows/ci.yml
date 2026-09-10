@@ -153,6 +153,16 @@ jobs:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
+      # Liga o Pages na primeira execução, em vez de exigir que alguém vá em
+      # Settings -> Pages antes do primeiro deploy. Sem isto, o primeiro push
+      # numa instalação nova falha com "Pages not enabled" — um erro que não
+      # diz respeito ao código nem aos dados, e que só aparece uma vez na vida
+      # do repositório, quando ninguém lembra mais dele.
+      - name: Habilitar o GitHub Pages, se ainda não estiver
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - id: deploy
         uses: actions/deploy-pages@v4
 

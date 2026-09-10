@@ -8,8 +8,8 @@
     "obra": "Observatório Nacional da Formação em Administração",
     "descricao": "Sítio estático data-driven com indicadores de acesso territorial, qualidade e absorção profissional dos cursos de Administração no Brasil: formulação e cálculo dos índices ICT, E, IAF e IAP e da densidade de administradores por mil ocupados, catálogo de indicadores, textos e desenho editorial."
   },
-  "registrado_em": "2026-09-10T03:14:10+00:00",
-  "git_commit_ancora": "be0f18089418b54d33926c153c1bcdde294c238b",
+  "registrado_em": "2026-09-10T12:57:31+00:00",
+  "git_commit_ancora": "d01d929034074567e586a4bd32fc8c07b26603ac",
   "algoritmo": "SHA-256 sobre o conteúdo com fim de linha normalizado em LF",
   "fundamento": "Lei 9.610/1998 (direitos autorais) e Lei 9.609/1998 (programa de computador). O resumo combinado é impressão digital única do conjunto; o commit Git ancora a data no histórico versionado.",
   "como_verificar": [
@@ -23,8 +23,8 @@
   "natureza": "Declaração datada de conteúdo, com anterioridade ancorada no histórico do repositório. Permite comparar uma cópia com o original arquivo a arquivo. Não é registro em cartório nem depósito no INPI, e não substitui nenhum dos dois.",
   "escopo": "Apenas material autoral: código, textos, templates e o desenho dos índices. Não inclui os dados públicos (INEP, DATASUS, IBGE), que pertencem às respectivas fontes, nem bibliotecas de terceiros.",
   "n_arquivos": 38,
-  "bytes_totais": 452264,
-  "sha256_combinado": "f83d6f7c75373c45eb36b950d199ebdd73e89ac5275072ccc88cf0f2402b0942",
+  "bytes_totais": 452790,
+  "sha256_combinado": "4a7906c63e66db96350ac66c0f7f36a7bc14de5d9bd26bb1f7df490855419d3a",
   "arquivos": [
     {
       "arquivo": "README.md",
@@ -250,9 +250,9 @@
     },
     {
       "arquivo": ".github/workflows/ci.yml",
-      "bytes": 10379,
-      "linhas": 242,
-      "sha256": "91f61ba1640123b6b52ae0b4309df56e95091476d5bed9e052b4cc3e90fac1ea"
+      "bytes": 10905,
+      "linhas": 252,
+      "sha256": "0a8f3366d2e6071db3f256cdec2d2596f1167d16f0384da59ff29ec16d641c72"
     }
   ]
 }
