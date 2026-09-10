@@ -8,8 +8,8 @@
     "obra": "Observatório Nacional da Formação em Administração",
     "descricao": "Sítio estático data-driven com indicadores de acesso territorial, qualidade e absorção profissional dos cursos de Administração no Brasil: formulação e cálculo dos índices ICT, E, IAF e IAP e da densidade de administradores por mil ocupados, catálogo de indicadores, textos e desenho editorial."
   },
-  "registrado_em": "2026-09-10T12:57:31+00:00",
-  "git_commit_ancora": "d01d929034074567e586a4bd32fc8c07b26603ac",
+  "registrado_em": "2026-09-10T13:02:12+00:00",
+  "git_commit_ancora": "204b819f0a9f0abf5137b1a9a2c1fb86ac139bf3",
   "algoritmo": "SHA-256 sobre o conteúdo com fim de linha normalizado em LF",
   "fundamento": "Lei 9.610/1998 (direitos autorais) e Lei 9.609/1998 (programa de computador). O resumo combinado é impressão digital única do conjunto; o commit Git ancora a data no histórico versionado.",
   "como_verificar": [
@@ -23,14 +23,14 @@
   "natureza": "Declaração datada de conteúdo, com anterioridade ancorada no histórico do repositório. Permite comparar uma cópia com o original arquivo a arquivo. Não é registro em cartório nem depósito no INPI, e não substitui nenhum dos dois.",
   "escopo": "Apenas material autoral: código, textos, templates e o desenho dos índices. Não inclui os dados públicos (INEP, DATASUS, IBGE), que pertencem às respectivas fontes, nem bibliotecas de terceiros.",
   "n_arquivos": 38,
-  "bytes_totais": 452790,
-  "sha256_combinado": "4a7906c63e66db96350ac66c0f7f36a7bc14de5d9bd26bb1f7df490855419d3a",
+  "bytes_totais": 453573,
+  "sha256_combinado": "6aec61b740901b6d55f06902adcbf347cbd31aa1443fe769582efd455ffaf88b",
   "arquivos": [
     {
       "arquivo": "README.md",
-      "bytes": 13620,
-      "linhas": 272,
-      "sha256": "5b3fac0281b5459b9ae900d004ef715a2255731d1a3701f6c4ec1c0d57d5977a"
+      "bytes": 14138,
+      "linhas": 279,
+      "sha256": "4d6c0f611088ef1dc71aae822eab564337cb6e3d3cb09afa2e6370e7bfdbc48b"
     },
     {
       "arquivo": "SECURITY.md",
@@ -250,9 +250,9 @@
     },
     {
       "arquivo": ".github/workflows/ci.yml",
-      "bytes": 10905,
-      "linhas": 252,
-      "sha256": "0a8f3366d2e6071db3f256cdec2d2596f1167d16f0384da59ff29ec16d641c72"
+      "bytes": 11170,
+      "linhas": 256,
+      "sha256": "94eae900ce0ff0307b2ae1e54323a1371666d5196ab787510bc53895653467dd"
     }
   ]
 }

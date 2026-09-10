@@ -153,16 +153,20 @@ jobs:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      # Liga o Pages na primeira execução, em vez de exigir que alguém vá em
-      # Settings -> Pages antes do primeiro deploy. Sem isto, o primeiro push
-      # numa instalação nova falha com "Pages not enabled" — um erro que não
-      # diz respeito ao código nem aos dados, e que só aparece uma vez na vida
-      # do repositório, quando ninguém lembra mais dele.
-      - name: Habilitar o GitHub Pages, se ainda não estiver
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
+      # PRÉ-REQUISITO MANUAL, UMA VEZ POR REPOSITÓRIO:
+      # Settings -> Pages -> Build and deployment -> Source: GitHub Actions.
+      #
+      # Tentei automatizar isto com `actions/configure-pages` e `enablement:
+      # true`, e a execução nº 1 deste repositório provou que não dá:
+      #
+      #   Create Pages site failed.
+      #   Error: Resource not accessible by integration
+      #
+      # CRIAR um site do Pages exige permissão de ADMINISTRAÇÃO do repositório.
+      # O `GITHUB_TOKEN` do workflow não a tem, e ela não está entre as que
+      # `permissions:` sabe conceder — `pages: write` autoriza PUBLICAR num
+      # site que já existe, não criá-lo. Automatizar aqui seria trocar um
+      # clique único por uma falha recorrente com mensagem enganosa.
       - id: deploy
         uses: actions/deploy-pages@v4
 

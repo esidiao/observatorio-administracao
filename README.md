@@ -220,6 +220,13 @@ campo.
 O deploy é **automático**: todo push na `main` que passar pelos portões vai ao ar no
 GitHub Pages.
 
+> **Uma vez por repositório, à mão:** *Settings → Pages → Build and deployment → Source:
+> **GitHub Actions***. Não dá para automatizar. Criar um site do Pages exige permissão de
+> administração do repositório, que o `GITHUB_TOKEN` do workflow não tem e que
+> `permissions:` não sabe conceder — `pages: write` autoriza publicar num site existente,
+> não criá-lo. Sem esse clique, o job `publicar` falha com *Resource not accessible by
+> integration*, e o `validar` continua passando normalmente.
+
 É uma escolha com consequência conhecida — um commit de texto republica o site. O que a
 torna aceitável é que nada passa pelos portões por acidente: portão GO das fórmulas,
 testes de integridade contra as âncoras do Censo e do CPC, guarda de riqueza. Um conjunto
