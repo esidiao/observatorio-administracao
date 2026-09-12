@@ -8,8 +8,8 @@
     "obra": "Observatório Nacional da Formação em Administração",
     "descricao": "Sítio estático data-driven com indicadores de acesso territorial, qualidade e absorção profissional dos cursos de Administração no Brasil: formulação e cálculo dos índices ICT, E, IAF e IAP e da densidade de administradores por mil ocupados, catálogo de indicadores, textos e desenho editorial."
   },
-  "registrado_em": "2026-09-12T15:15:25+00:00",
-  "git_commit_ancora": "ceef2d9183b7a86733466c369da65b82369c3111",
+  "registrado_em": "2026-09-12T15:26:11+00:00",
+  "git_commit_ancora": "53f0817783ccb21cf3f17f91764baf10db289186",
   "algoritmo": "SHA-256 sobre o conteúdo com fim de linha normalizado em LF",
   "fundamento": "Lei 9.610/1998 (direitos autorais) e Lei 9.609/1998 (programa de computador). O resumo combinado é impressão digital única do conjunto; o commit Git ancora a data no histórico versionado.",
   "como_verificar": [
@@ -23,8 +23,8 @@
   "natureza": "Declaração datada de conteúdo, com anterioridade ancorada no histórico do repositório. Permite comparar uma cópia com o original arquivo a arquivo. Não é registro em cartório nem depósito no INPI, e não substitui nenhum dos dois.",
   "escopo": "Apenas material autoral: código, textos, templates e o desenho dos índices. Não inclui os dados públicos (INEP, DATASUS, IBGE), que pertencem às respectivas fontes, nem bibliotecas de terceiros.",
   "n_arquivos": 39,
-  "bytes_totais": 461454,
-  "sha256_combinado": "effb4a5ace4260cf5a30f81820cb0eb9a6d0eff90fe60407c58abbd9e17202ab",
+  "bytes_totais": 462411,
+  "sha256_combinado": "3967a1a7d0c79c34fa7b04d5e810bd3c6bf6e00af95f072f855424ea211a55a8",
   "arquivos": [
     {
       "arquivo": "README.md",
@@ -244,9 +244,9 @@
     },
     {
       "arquivo": "tests/test_links.py",
-      "bytes": 6066,
-      "linhas": 154,
-      "sha256": "ec76fa2aad66e112cf3a98525bd2664ca6bea93e0ea4fa8cef9ae10de84635b6"
+      "bytes": 7023,
+      "linhas": 177,
+      "sha256": "e5dd8c78e484e39f03804969c8ae775abb6063ca4e04eaf1f1a7133d33331799"
     },
     {
       "arquivo": "tests/test_validacao.py",
