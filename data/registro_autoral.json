@@ -8,8 +8,8 @@
     "obra": "Observatório Nacional da Formação em Administração",
     "descricao": "Sítio estático data-driven com indicadores de acesso territorial, qualidade e absorção profissional dos cursos de Administração no Brasil: formulação e cálculo dos índices ICT, E, IAF e IAP e da densidade de administradores por mil ocupados, catálogo de indicadores, textos e desenho editorial."
   },
-  "registrado_em": "2026-09-10T13:18:53+00:00",
-  "git_commit_ancora": "bdb9ce72e367b8c4f561e04735df05f565caa8aa",
+  "registrado_em": "2026-09-12T15:15:25+00:00",
+  "git_commit_ancora": "ceef2d9183b7a86733466c369da65b82369c3111",
   "algoritmo": "SHA-256 sobre o conteúdo com fim de linha normalizado em LF",
   "fundamento": "Lei 9.610/1998 (direitos autorais) e Lei 9.609/1998 (programa de computador). O resumo combinado é impressão digital única do conjunto; o commit Git ancora a data no histórico versionado.",
   "como_verificar": [
@@ -22,9 +22,9 @@
   ],
   "natureza": "Declaração datada de conteúdo, com anterioridade ancorada no histórico do repositório. Permite comparar uma cópia com o original arquivo a arquivo. Não é registro em cartório nem depósito no INPI, e não substitui nenhum dos dois.",
   "escopo": "Apenas material autoral: código, textos, templates e o desenho dos índices. Não inclui os dados públicos (INEP, DATASUS, IBGE), que pertencem às respectivas fontes, nem bibliotecas de terceiros.",
-  "n_arquivos": 38,
-  "bytes_totais": 454997,
-  "sha256_combinado": "cecf506446b223e9a036f5a74fef9b7c27300b2989b5cf6b52c532ca83f2981e",
+  "n_arquivos": 39,
+  "bytes_totais": 461454,
+  "sha256_combinado": "effb4a5ace4260cf5a30f81820cb0eb9a6d0eff90fe60407c58abbd9e17202ab",
   "arquivos": [
     {
       "arquivo": "README.md",
@@ -243,6 +243,12 @@
       "sha256": "f95514def882094717b98cbb8cb288215d6ee5ab839eef7329e7d91a0437c8cd"
     },
     {
+      "arquivo": "tests/test_links.py",
+      "bytes": 6066,
+      "linhas": 154,
+      "sha256": "ec76fa2aad66e112cf3a98525bd2664ca6bea93e0ea4fa8cef9ae10de84635b6"
+    },
+    {
       "arquivo": "tests/test_validacao.py",
       "bytes": 23511,
       "linhas": 559,
@@ -250,9 +256,9 @@
     },
     {
       "arquivo": ".github/workflows/ci.yml",
-      "bytes": 11170,
-      "linhas": 256,
-      "sha256": "94eae900ce0ff0307b2ae1e54323a1371666d5196ab787510bc53895653467dd"
+      "bytes": 11561,
+      "linhas": 263,
+      "sha256": "c0d1d1a49760149d3ae2f03152f674e9d2466d7e324c274f064a532afc4f8675"
     }
   ]
 }
